@@ -1,8 +1,14 @@
 
-// #pragma once
-// #include <string>
+/*! \file Object.hpp */
+
+#ifndef OBJECT_HPP
+#define OBJECT_HPP
+
+#ifdef __cplusplus
+
+#ifndef SKIP_INCLUDES
 #include <opencv2/core/core.hpp>
-// #include <opencv2/highgui/highgui.hpp>
+#endif // SKIP_INCLUDES
 
 using namespace std;
 using namespace cv;
@@ -44,3 +50,6 @@ class Object {
   Scalar HSVmin, HSVmax;
   Scalar Color;
 };
+
+#endif // __cplusplus
+#endif /*OBJECT_HPP*/
