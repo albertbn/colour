@@ -235,8 +235,9 @@ void trackFilteredObject(Object theObject,Mat threshold,Mat HSV, Mat &cameraFeed
 }
 
 int main ( int argc, char* argv[] ) {
-  
+
   //if we would like to calibrate our filter values, set to true.
+  // bool calibrationMode = true;
   bool calibrationMode = false;
 
   //Matrix to store each frame of the webcam feed
@@ -296,28 +297,38 @@ int main ( int argc, char* argv[] ) {
     else {
       //create some temp fruit objects so that
       //we can use their member functions/information
-      Object blue("blue"), yellow("yellow"), red("red"), green("green");
 
-      //first find blue objects
+      Object white("white");
+      //white
       cvtColor(cameraFeed,HSV,COLOR_BGR2HSV);
-      inRange(HSV,blue.getHSVmin(),blue.getHSVmax(),threshold);
+      inRange(HSV,white.getHSVmin(),white.getHSVmax(),threshold);
       morphOps(threshold);
-      trackFilteredObject(blue,threshold,HSV,cameraFeed);
-      //then yellows
-      cvtColor(cameraFeed,HSV,COLOR_BGR2HSV);
-      inRange(HSV,yellow.getHSVmin(),yellow.getHSVmax(),threshold);
-      morphOps(threshold);
-      trackFilteredObject(yellow,threshold,HSV,cameraFeed);
-      //then reds
-      cvtColor(cameraFeed,HSV,COLOR_BGR2HSV);
-      inRange(HSV,red.getHSVmin(),red.getHSVmax(),threshold);
-      morphOps(threshold);
-      trackFilteredObject(red,threshold,HSV,cameraFeed);
-      //then greens
-      cvtColor(cameraFeed,HSV,COLOR_BGR2HSV);
-      inRange(HSV,green.getHSVmin(),green.getHSVmax(),threshold);
-      morphOps(threshold);
-      trackFilteredObject(green,threshold,HSV,cameraFeed);
+      trackFilteredObject(white,threshold,HSV,cameraFeed);
+
+      // Object blue("blue"), yellow("yellow"), red("red"), green("green");
+      // //first find blue objects
+      // cvtColor(cameraFeed,HSV,COLOR_BGR2HSV);
+      // inRange(HSV,blue.getHSVmin(),blue.getHSVmax(),threshold);
+      // morphOps(threshold);
+      // trackFilteredObject(blue,threshold,HSV,cameraFeed);
+
+      // //then yellows
+      // cvtColor(cameraFeed,HSV,COLOR_BGR2HSV);
+      // inRange(HSV,yellow.getHSVmin(),yellow.getHSVmax(),threshold);
+      // morphOps(threshold);
+      // trackFilteredObject(yellow,threshold,HSV,cameraFeed);
+
+      // //then reds
+      // cvtColor(cameraFeed,HSV,COLOR_BGR2HSV);
+      // inRange(HSV,red.getHSVmin(),red.getHSVmax(),threshold);
+      // morphOps(threshold);
+      // trackFilteredObject(red,threshold,HSV,cameraFeed);
+
+      // //then greens
+      // cvtColor(cameraFeed,HSV,COLOR_BGR2HSV);
+      // inRange(HSV,green.getHSVmin(),green.getHSVmax(),threshold);
+      // morphOps(threshold);
+      // trackFilteredObject(green,threshold,HSV,cameraFeed);
 
     }
     //show frames

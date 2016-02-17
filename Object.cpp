@@ -11,6 +11,15 @@ Object::Object(string name) {
 
   setType(name);
 
+
+  if ( name=="white" ) {
+
+    setHSVmin(Scalar(0,0,128));
+    setHSVmax(Scalar(256,27,256));
+
+    setColor(Scalar(255,0,0));
+  }
+
   if(name=="blue"){
 
     //TODO: use "calibration mode" to find HSV min
@@ -23,6 +32,7 @@ Object::Object(string name) {
     setColor(Scalar(255,0,0));
 
   }
+
   if(name=="green"){
 
     //TODO: use "calibration mode" to find HSV min
