@@ -237,7 +237,7 @@ void trackFilteredObject(Object theObject,Mat threshold,Mat HSV, Mat &cameraFeed
 int main ( int argc, char* argv[] ) {
   
   //if we would like to calibrate our filter values, set to true.
-  bool calibrationMode = true;
+  bool calibrationMode = false;
 
   //Matrix to store each frame of the webcam feed
   Mat cameraFeed;
