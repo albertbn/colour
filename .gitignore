@@ -1,4 +1,5 @@
 colour
+img/
 *.dSYM
 # Compiled Object files
 *.slo

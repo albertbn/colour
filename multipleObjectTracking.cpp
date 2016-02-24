@@ -1,6 +1,16 @@
 
 // g++ -g -rdynamic $(pkg-config --cflags --libs opencv)  -o colour Object.cpp multipleObjectTracking.cpp
 
+// https://github.com/dmlc/mxnet/issues/1064
+// MichaMucha commented on Dec 26, 2015
+// Okay thanks for spending your time on this. I figured it out, turned out to be very simple.
+// I put the contents of http://sourceforge.net/projects/opencvlibrary/files/3rdparty/ippicv/
+// into /usr/local/lib/
+
+// while i should have put it to /usr/local/ , letting what was in include/ and in lib/ fall into the right folder.
+// No problems after that.
+// Thanks
+
 //Written by  Kyle Hounslow 2013
 
 // modified by: Ahmad Kaifi, Hassan Althobaiti
@@ -35,6 +45,8 @@ int V_MAX = 256;
 //default capture width and height
 const int FRAME_WIDTH = 640;
 const int FRAME_HEIGHT = 480;
+const int FRAME_WIDTH_LARGE = 2048;
+const int FRAME_HEIGHT_LARGE = 1536;
 //max number of objects to be detected in frame
 const int MAX_NUM_OBJECTS=50;
 //minimum and maximum object area
@@ -259,7 +271,9 @@ int main ( int argc, char* argv[] ) {
   //start an infinite loop where webcam feed is copied to cameraFeed matrix
   //all of our operations will be performed within this loop
   waitKey(1000);
-  while(1){
+  int i=0;
+  while ( i++<100 ) {
+    // while(1){
     //store image to matrix
     capture.read(cameraFeed);
 
@@ -341,5 +355,13 @@ int main ( int argc, char* argv[] ) {
     //image will not appear without this waitKey() command
     waitKey(30);
   }
+
+  imwrite ( "./img/scrap/colour_last_frame.jpg", cameraFeed );
+  capture.set(CV_CAP_PROP_FRAME_WIDTH,FRAME_WIDTH_LARGE);
+  capture.set(CV_CAP_PROP_FRAME_HEIGHT,FRAME_HEIGHT_LARGE);
+  waitKey(1000);
+  capture.read(cameraFeed);
+  imwrite ( "./img/scrap/colour_last_frame_large.jpg", cameraFeed );
+
   return 0;
 }
